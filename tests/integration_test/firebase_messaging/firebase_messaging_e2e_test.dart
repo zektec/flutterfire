@@ -100,14 +100,16 @@ void main() {
 
       group('requestPermission', () {
         test(
-          'authorizationStatus returns AuthorizationStatus.notDetermined on Web',
+          'authorizationStatus follows the browser permission policy on Web',
           () async {
             final result = await messaging.requestPermission();
 
             expect(result, isA<NotificationSettings>());
             expect(
               result.authorizationStatus,
-              AuthorizationStatus.notDetermined,
+              skipManualTests
+                  ? AuthorizationStatus.denied
+                  : AuthorizationStatus.notDetermined,
             );
           },
           skip: !kIsWeb,

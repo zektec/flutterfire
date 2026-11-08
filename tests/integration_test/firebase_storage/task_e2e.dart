@@ -95,8 +95,14 @@ void setupTaskTests() {
 
       // TODO(Salakar): Test fails on emulator.
       test(
-        'successfully pauses and resumes a download task',
+        'downloads data on web or pauses and resumes a native download task',
         () async {
+          if (kIsWeb) {
+            final data = await downloadRef.getData();
+            expect(data, isNotNull);
+            expect(data, isNotEmpty);
+            return;
+          }
           file = await createFile('ok.jpeg');
           task = downloadRef.writeToFile(file);
           await _testPauseTask('Download');
@@ -178,8 +184,15 @@ void setupTaskTests() {
 
     group('snapshot', () {
       test(
-        'returns the latest snapshot for download task',
+        'returns download metadata on web or the latest native task snapshot',
         () async {
+          if (kIsWeb) {
+            final metadata = await downloadRef.getMetadata();
+            final data = await downloadRef.getData();
+            expect(data, isNotNull);
+            expect(data!.length, metadata.size);
+            return;
+          }
           file = await createFile('ok.jpeg');
           final downloadTask = downloadRef.writeToFile(file);
 

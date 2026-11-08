@@ -336,7 +336,10 @@ class UploadTask extends JsObjectWrapper<storage_interop.UploadTaskJsImpl> {
       changeController.add(UploadTaskSnapshot.getInstance(data));
     }).toJS;
 
-    var errorWrapper = ((JSError e) => changeController.addError(e)).toJS;
+    var errorWrapper = ((JSError e) {
+      changeController.addError(e);
+      changeController.close();
+    }).toJS;
     var onCompletion = (() {
       // Needing a block here (instead of an inline => function) seems to be a
       // dart-lang/sdk quirk/feature.

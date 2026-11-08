@@ -306,17 +306,13 @@ class FirebaseAuthWeb extends FirebaseAuthPlatform {
   }
 
   @override
-  String get languageCode {
-    return delegate.languageCode ?? 'en';
+  String? get languageCode {
+    return delegate.languageCode;
   }
 
   @override
   Future<void> setLanguageCode(String? languageCode) async {
-    if (languageCode == null) {
-      delegate.useDeviceLanguage();
-    } else {
-      delegate.languageCode = languageCode;
-    }
+    delegate.languageCode = languageCode;
   }
 
   @override
