@@ -35,6 +35,7 @@
 #include <string>
 #include <string_view>
 #include <unordered_map>
+#include <vector>
 
 using ::firebase::App;
 using ::firebase::auth::Auth;
@@ -120,9 +121,14 @@ firebase_auth_windows::FirebaseAuthPlugin::ConvertToEncodableValue(
     case firebase::Variant::kTypeMap:
       return FirebaseAuthPlugin::ConvertToEncodableMap(variant.map());
     case firebase::Variant::kTypeStaticBlob:
-      return EncodableValue(variant.blob_data());
-    case firebase::Variant::kTypeMutableBlob:
-      return EncodableValue(variant.mutable_blob_data());
+    case firebase::Variant::kTypeMutableBlob: {
+      if (variant.blob_size() == 0) {
+        return EncodableValue(std::vector<uint8_t>{});
+      }
+      const auto* data = variant.blob_data();
+      return EncodableValue(
+          std::vector<uint8_t>(data, data + variant.blob_size()));
+    }
     default:
       return EncodableValue();
   }
