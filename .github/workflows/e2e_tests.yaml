@@ -283,11 +283,8 @@ jobs:
         # workaround we can use the `flutter drive` command. Tracking issue:
         # https://github.com/flutter/flutter/issues/66264
         run: |
-          CHROME_PROFILE="$(mktemp -d)"
-          mkdir -p "$CHROME_PROFILE/Default"
-          echo '{"profile":{"default_content_setting_values":{"notifications":2}}}' > "$CHROME_PROFILE/Default/Preferences"
           chromedriver --port=4444 --trace-buffer-size=100000 &
-          flutter drive --target=./integration_test/e2e_test.dart --driver=./test_driver/integration_test.dart -d chrome --web-browser-flag=--deny-permission-prompts --web-browser-flag=--user-data-dir="$CHROME_PROFILE" --dart-define=CI=true | tee output.log
+          flutter drive --target=./integration_test/e2e_test.dart --driver=./test_driver/integration_test.dart -d chrome --web-browser-flag=--deny-permission-prompts --dart-define=CI=true | tee output.log
           # We have to check the output for failed tests matching the string "[E]"
           output=$(<output.log)
           if [[ "$output" =~ \[E\] ]]; then

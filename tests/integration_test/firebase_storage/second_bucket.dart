@@ -25,26 +25,20 @@ void setupSecondBucketTests() {
         bucket: secondStorageBucket,
       );
       await storage.useStorageEmulator(testEmulatorHost, testEmulatorPort);
-      final File file = await createFile('flt-ok.txt');
-      final Reference ref = storage.ref('flutter-tests').child('flt-ok.txt');
-      await ref.putFile(file);
+      Future<void> uploadFixture(String directory, String name) async {
+        final ref = storage.ref(directory).child(name);
+        if (kIsWeb) {
+          await ref.putString(kTestString);
+        } else {
+          final file = await createFile(name);
+          await ref.putFile(file);
+        }
+      }
 
-      //allowable-lists-2nd-bucket
-      final File file1 = await createFile('list-1.txt');
-      final File file2 = await createFile('list-2.txt');
-      final File file3 = await createFile('list-3.txt');
-      await storage
-          .ref(allowableListsSecondBucket)
-          .child('list-1.txt')
-          .putFile(file1);
-      await storage
-          .ref(allowableListsSecondBucket)
-          .child('list-2.txt')
-          .putFile(file2);
-      await storage
-          .ref(allowableListsSecondBucket)
-          .child('list-3.txt')
-          .putFile(file3);
+      await uploadFixture('flutter-tests', 'flt-ok.txt');
+      await uploadFixture(allowableListsSecondBucket, 'list-1.txt');
+      await uploadFixture(allowableListsSecondBucket, 'list-2.txt');
+      await uploadFixture(allowableListsSecondBucket, 'list-3.txt');
     });
 
     group('bucket', () {
@@ -432,8 +426,17 @@ void setupSecondBucketTests() {
 
     group('writeToFile', () {
       test(
-        'writes a file',
+        'downloads data on web or writes a native file',
         () async {
+          if (kIsWeb) {
+            final ref = storage.ref('flutter-tests/ok.txt');
+            final metadata = await ref.getMetadata();
+            final data = await ref.getData(32 * 1024 * 1024);
+            expect(data, isNotNull);
+            expect(data!.length, metadata.size);
+            expect(ref.bucket, secondStorageBucket);
+            return;
+          }
           File file = await createFile('ok.txt');
           TaskSnapshot complete =
               await storage.ref('flutter-tests/ok.txt').writeToFile(file);
