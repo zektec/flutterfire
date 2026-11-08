@@ -496,11 +496,11 @@ void FirebaseStorageHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
         binaryMessenger:binaryMessenger
                   codec:FirebaseStorageHostApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(referenceGetDownloadURLApp:
-                                                                   reference:completion:)],
-                @"FirebaseStorageHostApi api (%@) doesn't respond to "
-                @"@selector(referenceGetDownloadURLApp:reference:completion:)",
-                api);
+      NSCAssert(
+          [api respondsToSelector:@selector(referenceGetDownloadURLApp:reference:completion:)],
+          @"FirebaseStorageHostApi api (%@) doesn't respond to "
+          @"@selector(referenceGetDownloadURLApp:reference:completion:)",
+          api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         PigeonStorageFirebaseApp *arg_app = GetNullableObjectAtIndex(args, 0);
@@ -602,11 +602,11 @@ void FirebaseStorageHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
         binaryMessenger:binaryMessenger
                   codec:FirebaseStorageHostApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(referenceGetDataApp:
-                                                            reference:maxSize:completion:)],
-                @"FirebaseStorageHostApi api (%@) doesn't respond to "
-                @"@selector(referenceGetDataApp:reference:maxSize:completion:)",
-                api);
+      NSCAssert(
+          [api respondsToSelector:@selector(referenceGetDataApp:reference:maxSize:completion:)],
+          @"FirebaseStorageHostApi api (%@) doesn't respond to "
+          @"@selector(referenceGetDataApp:reference:maxSize:completion:)",
+          api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         PigeonStorageFirebaseApp *arg_app = GetNullableObjectAtIndex(args, 0);
@@ -632,8 +632,8 @@ void FirebaseStorageHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
                   codec:FirebaseStorageHostApiGetCodec()];
     if (api) {
       NSCAssert(
-          [api respondsToSelector:@selector
-               (referencePutDataApp:reference:data:settableMetaData:handle:completion:)],
+          [api respondsToSelector:@selector(referencePutDataApp:reference:data:settableMetaData:
+                                            handle:completion:)],
           @"FirebaseStorageHostApi api (%@) doesn't respond to "
           @"@selector(referencePutDataApp:reference:data:settableMetaData:handle:completion:)",
           api);
@@ -664,9 +664,8 @@ void FirebaseStorageHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
         binaryMessenger:binaryMessenger
                   codec:FirebaseStorageHostApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector
-                     (referencePutStringApp:
-                                  reference:data:format:settableMetaData:handle:completion:)],
+      NSCAssert([api respondsToSelector:@selector(referencePutStringApp:reference:data:format:
+                                                  settableMetaData:handle:completion:)],
                 @"FirebaseStorageHostApi api (%@) doesn't respond to "
                 @"@selector(referencePutStringApp:reference:data:format:settableMetaData:handle:"
                 @"completion:)",
@@ -701,8 +700,8 @@ void FirebaseStorageHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
                   codec:FirebaseStorageHostApiGetCodec()];
     if (api) {
       NSCAssert(
-          [api respondsToSelector:@selector
-               (referencePutFileApp:reference:filePath:settableMetaData:handle:completion:)],
+          [api respondsToSelector:@selector(referencePutFileApp:reference:filePath:settableMetaData:
+                                            handle:completion:)],
           @"FirebaseStorageHostApi api (%@) doesn't respond to "
           @"@selector(referencePutFileApp:reference:filePath:settableMetaData:handle:completion:)",
           api);
@@ -733,8 +732,8 @@ void FirebaseStorageHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
         binaryMessenger:binaryMessenger
                   codec:FirebaseStorageHostApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector
-                     (referenceDownloadFileApp:reference:filePath:handle:completion:)],
+      NSCAssert([api respondsToSelector:
+                         @selector(referenceDownloadFileApp:reference:filePath:handle:completion:)],
                 @"FirebaseStorageHostApi api (%@) doesn't respond to "
                 @"@selector(referenceDownloadFileApp:reference:filePath:handle:completion:)",
                 api);
@@ -763,11 +762,12 @@ void FirebaseStorageHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
         binaryMessenger:binaryMessenger
                   codec:FirebaseStorageHostApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(referenceUpdateMetadataApp:
-                                                                   reference:metadata:completion:)],
-                @"FirebaseStorageHostApi api (%@) doesn't respond to "
-                @"@selector(referenceUpdateMetadataApp:reference:metadata:completion:)",
-                api);
+      NSCAssert(
+          [api respondsToSelector:@selector(
+                                      referenceUpdateMetadataApp:reference:metadata:completion:)],
+          @"FirebaseStorageHostApi api (%@) doesn't respond to "
+          @"@selector(referenceUpdateMetadataApp:reference:metadata:completion:)",
+          api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         PigeonStorageFirebaseApp *arg_app = GetNullableObjectAtIndex(args, 0);

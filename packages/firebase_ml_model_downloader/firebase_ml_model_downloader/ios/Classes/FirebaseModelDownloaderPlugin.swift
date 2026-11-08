@@ -10,7 +10,6 @@
 
 import FirebaseCore
 import FirebaseMLModelDownloader
-
 import firebase_core
 
 let kFLTFirebaseModelDownloaderChannelName = "plugins.flutter.io/firebase_ml_model_downloader"

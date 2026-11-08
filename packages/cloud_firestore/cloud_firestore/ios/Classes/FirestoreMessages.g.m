@@ -906,11 +906,12 @@ void FirebaseFirestoreHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
         binaryMessenger:binaryMessenger
                   codec:FirebaseFirestoreHostApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(setIndexConfigurationApp:
-                                                        indexConfiguration:completion:)],
-                @"FirebaseFirestoreHostApi api (%@) doesn't respond to "
-                @"@selector(setIndexConfigurationApp:indexConfiguration:completion:)",
-                api);
+      NSCAssert(
+          [api respondsToSelector:@selector(
+                                      setIndexConfigurationApp:indexConfiguration:completion:)],
+          @"FirebaseFirestoreHostApi api (%@) doesn't respond to "
+          @"@selector(setIndexConfigurationApp:indexConfiguration:completion:)",
+          api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         FirestorePigeonFirebaseApp *arg_app = GetNullableObjectAtIndex(args, 0);
@@ -978,11 +979,11 @@ void FirebaseFirestoreHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
         binaryMessenger:binaryMessenger
                   codec:FirebaseFirestoreHostApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(transactionCreateApp:
-                                                               timeout:maxAttempts:completion:)],
-                @"FirebaseFirestoreHostApi api (%@) doesn't respond to "
-                @"@selector(transactionCreateApp:timeout:maxAttempts:completion:)",
-                api);
+      NSCAssert(
+          [api respondsToSelector:@selector(transactionCreateApp:timeout:maxAttempts:completion:)],
+          @"FirebaseFirestoreHostApi api (%@) doesn't respond to "
+          @"@selector(transactionCreateApp:timeout:maxAttempts:completion:)",
+          api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         FirestorePigeonFirebaseApp *arg_app = GetNullableObjectAtIndex(args, 0);
@@ -1006,8 +1007,8 @@ void FirebaseFirestoreHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
         binaryMessenger:binaryMessenger
                   codec:FirebaseFirestoreHostApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector
-                     (transactionStoreResultTransactionId:resultType:commands:completion:)],
+      NSCAssert([api respondsToSelector:@selector(transactionStoreResultTransactionId:resultType:
+                                                  commands:completion:)],
                 @"FirebaseFirestoreHostApi api (%@) doesn't respond to "
                 @"@selector(transactionStoreResultTransactionId:resultType:commands:completion:)",
                 api);
@@ -1034,11 +1035,11 @@ void FirebaseFirestoreHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
         binaryMessenger:binaryMessenger
                   codec:FirebaseFirestoreHostApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(transactionGetApp:
-                                                      transactionId:path:completion:)],
-                @"FirebaseFirestoreHostApi api (%@) doesn't respond to "
-                @"@selector(transactionGetApp:transactionId:path:completion:)",
-                api);
+      NSCAssert(
+          [api respondsToSelector:@selector(transactionGetApp:transactionId:path:completion:)],
+          @"FirebaseFirestoreHostApi api (%@) doesn't respond to "
+          @"@selector(transactionGetApp:transactionId:path:completion:)",
+          api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
         FirestorePigeonFirebaseApp *arg_app = GetNullableObjectAtIndex(args, 0);
@@ -1164,8 +1165,8 @@ void FirebaseFirestoreHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
         binaryMessenger:binaryMessenger
                   codec:FirebaseFirestoreHostApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector
-                     (queryGetApp:path:isCollectionGroup:parameters:options:completion:)],
+      NSCAssert([api respondsToSelector:@selector(queryGetApp:path:isCollectionGroup:parameters:
+                                                  options:completion:)],
                 @"FirebaseFirestoreHostApi api (%@) doesn't respond to "
                 @"@selector(queryGetApp:path:isCollectionGroup:parameters:options:completion:)",
                 api);
@@ -1197,9 +1198,8 @@ void FirebaseFirestoreHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
         binaryMessenger:binaryMessenger
                   codec:FirebaseFirestoreHostApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector
-                     (aggregateQueryApp:
-                                   path:parameters:source:queries:isCollectionGroup:completion:)],
+      NSCAssert([api respondsToSelector:@selector(aggregateQueryApp:path:parameters:source:queries:
+                                                  isCollectionGroup:completion:)],
                 @"FirebaseFirestoreHostApi api (%@) doesn't respond to "
                 @"@selector(aggregateQueryApp:path:parameters:source:queries:isCollectionGroup:"
                 @"completion:)",
@@ -1260,9 +1260,8 @@ void FirebaseFirestoreHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
                   codec:FirebaseFirestoreHostApiGetCodec()];
     if (api) {
       NSCAssert(
-          [api respondsToSelector:@selector(querySnapshotApp:
-                                                        path:isCollectionGroup:parameters:options
-                                                            :includeMetadataChanges:completion:)],
+          [api respondsToSelector:@selector(querySnapshotApp:path:isCollectionGroup:parameters:
+                                            options:includeMetadataChanges:completion:)],
           @"FirebaseFirestoreHostApi api (%@) doesn't respond to "
           @"@selector(querySnapshotApp:path:isCollectionGroup:parameters:options:"
           @"includeMetadataChanges:completion:)",
@@ -1297,8 +1296,8 @@ void FirebaseFirestoreHostApiSetup(id<FlutterBinaryMessenger> binaryMessenger,
                   codec:FirebaseFirestoreHostApiGetCodec()];
     if (api) {
       NSCAssert(
-          [api respondsToSelector:@selector
-               (documentReferenceSnapshotApp:parameters:includeMetadataChanges:completion:)],
+          [api respondsToSelector:@selector(documentReferenceSnapshotApp:parameters:
+                                            includeMetadataChanges:completion:)],
           @"FirebaseFirestoreHostApi api (%@) doesn't respond to "
           @"@selector(documentReferenceSnapshotApp:parameters:includeMetadataChanges:completion:)",
           api);

@@ -38,8 +38,8 @@ class IdChangedStreamHandler: NSObject, FlutterStreamHandler {
     }
   }
 
-  public func onListen(withArguments _: Any?,
-                       eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+  func onListen(withArguments _: Any?,
+                eventSink events: @escaping FlutterEventSink) -> FlutterError? {
     eventSink = events
     installationIDObserver = NotificationCenter.default.addObserver(
       forName: .InstallationIDDidChange,
@@ -51,7 +51,7 @@ class IdChangedStreamHandler: NSObject, FlutterStreamHandler {
     return nil
   }
 
-  public func onCancel(withArguments _: Any?) -> FlutterError? {
+  func onCancel(withArguments _: Any?) -> FlutterError? {
     eventSink = nil
     return nil
   }
