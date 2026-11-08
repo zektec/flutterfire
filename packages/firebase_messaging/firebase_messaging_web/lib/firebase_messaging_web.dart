@@ -144,6 +144,10 @@ class FirebaseMessagingWeb extends FirebaseMessagingPlatform {
     bool sound = true,
   }) {
     return convertWebExceptions(() async {
+      final permission = web.Notification.permission;
+      if (permission == 'granted' || permission == 'denied') {
+        return utils.getNotificationSettings(permission);
+      }
       String status =
           (await web.Notification.requestPermission().toDart)! as String;
       return utils.getNotificationSettings(status);
