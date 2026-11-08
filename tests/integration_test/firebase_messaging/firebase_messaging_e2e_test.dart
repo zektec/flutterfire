@@ -102,6 +102,10 @@ void main() {
         test(
           'authorizationStatus follows the browser permission policy on Web',
           () async {
+            if (skipManualTests) {
+              final settings = await messaging.getNotificationSettings();
+              expect(settings.authorizationStatus, AuthorizationStatus.denied);
+            }
             final result = await messaging.requestPermission();
 
             expect(result, isA<NotificationSettings>());

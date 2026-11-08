@@ -53,6 +53,7 @@ class TaskWeb extends TaskPlatform {
 
       group.add(onStateChangedStream);
       group.add(onComplete.asStream());
+      group.close();
 
       return group.stream;
     });
