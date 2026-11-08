@@ -18,7 +18,7 @@ Future<void> main() async {
     try {
       final request = await client.postUrl(endpoint);
       request.headers.contentType = ContentType.json;
-      request.write(
+      final payload = utf8.encode(
         jsonEncode({
           'cmd': 'Browser.setPermission',
           'params': {
@@ -27,6 +27,8 @@ Future<void> main() async {
           },
         }),
       );
+      request.contentLength = payload.length;
+      request.add(payload);
       final response = await request.close();
       final body = await response.transform(utf8.decoder).join();
       final result = jsonDecode(body) as Map<String, dynamic>;
