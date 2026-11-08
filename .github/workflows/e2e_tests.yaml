@@ -43,7 +43,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Firebase Emulator Cache
-        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.cache/firebase/emulators
           key: firebase-emulators-v3-${{ github.run_id }}
@@ -51,6 +51,7 @@ jobs:
       - uses: subosito/flutter-action@2783a3f08e1baf891508463f8c6653c258246225
         with:
           channel: 'stable'
+          flutter-version: '3.16.9'
           cache: true
       - uses: bluefireteam/melos-action@720a109b686f61979b4f9f0d14f582ab1637647e
         with:
@@ -60,7 +61,7 @@ jobs:
         run: melos bootstrap --scope tests && melos bootstrap --scope "cloud_firestore*"
       - name: 'Install Tools'
         run: |
-          sudo npm i -g firebase-tools
+          sudo npm i -g firebase-tools@13.0.2
       - name: Start Firebase Emulator
         run: cd ./.github/workflows/scripts && ./start-firebase-emulator.sh
       - name: Enable KVM
@@ -73,7 +74,7 @@ jobs:
         with:
           artifact-retention-days: 1
       - name: AVD cache
-        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         id: avd-cache
         with:
           path: |
@@ -112,7 +113,7 @@ jobs:
         with:
           key: ${{ runner.os }}-ios-v3
           max-size: 700M
-      - uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         name: Pods Cache
         id: pods-cache
         with:
@@ -120,7 +121,7 @@ jobs:
           key: ${{ runner.os }}-pods-v3-${{ hashFiles('tests/ios/Podfile.lock') }}
           restore-keys: ${{ runner.os }}-ios-pods-v2
       - name: Firebase Emulator Cache
-        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.cache/firebase/emulators
           key: firebase-emulators-v3-${{ github.run_id }}
@@ -128,6 +129,7 @@ jobs:
       - uses: subosito/flutter-action@2783a3f08e1baf891508463f8c6653c258246225
         with:
           channel: 'stable'
+          flutter-version: '3.16.9'
           cache: true
       - uses: bluefireteam/melos-action@720a109b686f61979b4f9f0d14f582ab1637647e
         with:
@@ -137,7 +139,7 @@ jobs:
         run: melos bootstrap --scope tests && melos bootstrap --scope "cloud_firestore*"
       - name: 'Install Tools'
         run: |
-          sudo npm i -g firebase-tools
+          sudo npm i -g firebase-tools@13.0.2
       - name: 'Build Application'
         working-directory: ${{ matrix.working_directory }}
         run: |
@@ -187,7 +189,7 @@ jobs:
         with:
           key: ${{ runner.os }}-macos-v2
           max-size: 700M
-      - uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         name: Pods Cache
         id: pods-cache
         with:
@@ -195,7 +197,7 @@ jobs:
           key: ${{ runner.os }}-pods-v2-${{ hashFiles('tests/macos/Podfile.lock') }}
           restore-keys: ${{ runner.os }}-macos-pods-v1
       - name: Cache Firebase Emulator
-        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.cache/firebase/emulators
           key: firebase-emulators-v3-${{ github.run_id }}
@@ -203,6 +205,7 @@ jobs:
       - uses: subosito/flutter-action@2783a3f08e1baf891508463f8c6653c258246225
         with:
           channel: 'stable'
+          flutter-version: '3.16.9'
           cache: true
       - uses: bluefireteam/melos-action@720a109b686f61979b4f9f0d14f582ab1637647e
         with:
@@ -212,7 +215,7 @@ jobs:
         run: melos bootstrap --scope tests && melos bootstrap --scope "cloud_firestore*"
       - name: 'Install Tools'
         run: |
-          sudo npm i -g firebase-tools
+          sudo npm i -g firebase-tools@13.0.2
       - name: 'Build Application'
         working-directory: ${{ matrix.working_directory }}
         run: |
@@ -255,6 +258,7 @@ jobs:
       - uses: subosito/flutter-action@2783a3f08e1baf891508463f8c6653c258246225
         with:
           channel: 'stable'
+          flutter-version: '3.16.9'
           cache: true
       - uses: bluefireteam/melos-action@720a109b686f61979b4f9f0d14f582ab1637647e
         with:
@@ -264,9 +268,9 @@ jobs:
         run: melos bootstrap --scope tests && melos bootstrap --scope "cloud_firestore*"
       - name: 'Install Tools'
         run: |
-          sudo npm i -g firebase-tools
+          sudo npm i -g firebase-tools@13.0.2
       - name: Cache Firebase Emulator
-        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.cache/firebase/emulators
           key: firebase-emulators-v3-${{ github.run_id }}
@@ -306,6 +310,7 @@ jobs:
       - uses: subosito/flutter-action@2783a3f08e1baf891508463f8c6653c258246225
         with:
           channel: 'stable'
+          flutter-version: '3.16.9'
           cache: true
       - uses: bluefireteam/melos-action@720a109b686f61979b4f9f0d14f582ab1637647e
         with:
@@ -315,6 +320,6 @@ jobs:
         run: melos bootstrap --scope tests && melos bootstrap --scope "cloud_firestore*"
       - name: "Install Tools"
         run: |
-          npm install -g firebase-tools
+          npm install -g firebase-tools@13.0.2
       - name: Start Firebase Emulator and run tests
         run: cd ./.github/workflows/scripts && firebase emulators:exec --project flutterfire-e2e-tests "cd ../../../tests && flutter test .\integration_test\e2e_test.dart -d windows"
