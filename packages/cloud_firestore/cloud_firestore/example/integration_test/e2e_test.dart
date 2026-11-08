@@ -53,9 +53,9 @@ void main() {
     runTransactionTests();
     runWriteBatchTests();
     runLoadBundleTests();
-    runSecondAppTests();
+    runSecondAppTests(useEmulator: kUseFirestoreEmulator);
     if (defaultTargetPlatform != TargetPlatform.windows) {
-      runSecondDatabaseTests();
+      runSecondDatabaseTests(useEmulator: kUseFirestoreEmulator);
     }
   });
 }

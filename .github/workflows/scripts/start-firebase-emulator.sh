@@ -59,6 +59,7 @@ while [ $RETRIES -le $MAX_RETRIES ]; do
         sleep 15
         if curl --output /dev/null --silent --fail http://localhost:8080; then
           echo "Firebase Emulator Suite is online!"
+          node ./configure-firestore-emulator.js || exit 1
           exit 0
         else
           echo "❌ Firebase Emulator exited after startup."

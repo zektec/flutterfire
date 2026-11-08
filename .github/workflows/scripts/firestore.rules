@@ -1,6 +1,11 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // The named-database suite must not grant this collection access in the default database.
+    match /flutterfire-2/{document=**} {
+      allow read, write: if database == 'flutterfire-2';
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

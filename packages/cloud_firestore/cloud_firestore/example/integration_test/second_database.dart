@@ -26,7 +26,7 @@ String getCurrentPlatform() {
   }
 }
 
-void runSecondDatabaseTests() {
+void runSecondDatabaseTests({required bool useEmulator}) {
   group('Second Database', () {
     late FirebaseFirestore firestore;
 
@@ -35,6 +35,9 @@ void runSecondDatabaseTests() {
         app: Firebase.app(),
         databaseURL: 'flutterfire-2',
       );
+      if (useEmulator) {
+        firestore.useFirestoreEmulator('localhost', 8080);
+      }
     });
 
     Future<CollectionReference<Map<String, dynamic>>> initializeTest(

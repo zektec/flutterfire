@@ -9,7 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'firebase_options_secondary.dart';
 
-void runSecondAppTests() {
+void runSecondAppTests({required bool useEmulator}) {
   group('$FirebaseFirestore', () {
     late FirebaseFirestore firestore;
     late FirebaseFirestore secondFirestoreProject;
@@ -23,6 +23,9 @@ void runSecondAppTests() {
       secondFirestoreProject = FirebaseFirestore.instanceFor(
         app: secondApp,
       );
+      if (useEmulator) {
+        secondFirestoreProject.useFirestoreEmulator('localhost', 8080);
+      }
     });
 
     group(
